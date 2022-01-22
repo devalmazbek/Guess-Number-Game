@@ -1,6 +1,6 @@
 "use strict";
 
-const randomNumber = Math.trunc(Math.random() * 20);
+let randomNumber = Math.trunc(Math.random() * 20);
 const number = document.querySelector(".number");
 let score = document.querySelector(".score");
 let scoreStart = 20;
@@ -33,10 +33,10 @@ check.addEventListener("click", function () {
     }
   }
 
-  // if less number
-  else if (guess < randomNumber) {
+  // if more or less
+  else if (guess !== randomNumber) {
     if (scoreStart > 1) {
-      message.textContent = "Это меньше";
+      message.textContent = guess > randomNumber ? "Это больше" : "Это меньше";
       scoreStart--;
       score.textContent = scoreStart;
     } else {
@@ -45,20 +45,33 @@ check.addEventListener("click", function () {
     }
   }
 
-  // if more
-  else if (guess > randomNumber) {
-    if (scoreStart > 1) {
-      message.textContent = "Это больше";
-      scoreStart--;
-      score.textContent = scoreStart;
-    } else {
-      message.textContent = "😌 Жаль но вы проиграли";
-      score.textContent = 0;
-    }
-  }
+  // if less number
+  // else if (guess < randomNumber) {
+  //   if (scoreStart > 1) {
+  //     message.textContent = "Это меньше";
+  //     scoreStart--;
+  //     score.textContent = scoreStart;
+  //   } else {
+  //     message.textContent = "😌 Жаль но вы проиграли";
+  //     score.textContent = 0;
+  //   }
+  // }
+
+  // // if more
+  // else if (guess > randomNumber) {
+  //   if (scoreStart > 1) {
+  //     message.textContent = "Это больше";
+  //     scoreStart--;
+  //     score.textContent = scoreStart;
+  //   } else {
+  //     message.textContent = "😌 Жаль но вы проиграли";
+  //     score.textContent = 0;
+  //   }
+  // }
 });
 
 againButton.addEventListener("click", function () {
+  randomNumber = Math.trunc(Math.random() * 20);
   scoreStart = 20;
   number.textContent = "?";
   document.querySelector("body").style.background = "";
